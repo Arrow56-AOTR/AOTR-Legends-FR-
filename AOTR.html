@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>AoTR Wiki</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: radial-gradient(circle at top, #0f172a, #050508);
+  color: white;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(90deg, #00ffcc, #3b82f6, #a855f7);
+  animation: glow 5s infinite linear;
+}
+
+@keyframes glow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* SEARCH */
+#search {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 15px;
+  background: #0f172a;
+  color: white;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+/* CARDS */
+.card {
+  background: #111827;
+  padding: 15px;
+  border-radius: 14px;
+  cursor: pointer;
+  border: 1px solid #1f2937;
+  transition: 0.25s;
+  text-align: center;
+}
+
+.card:hover {
+  transform: scale(1.06);
+  border-color: #00ffcc;
+  box-shadow: 0 0 20px rgba(0,255,204,0.25);
+}
+
+/* POPUP */
+.popup {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  animation: fade 0.2s ease;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.popup-content {
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 750px;
+  border: 1px solid #00ffcc;
+  animation: pop 0.2s ease;
+}
+
+@keyframes pop {
+  from {transform: scale(0.9);}
+  to {transform: scale(1);}
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+}
+
+h2 {
+  color: #00ffcc;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚔️ AoTR Wiki</h1>
+  <p>Builds META • Update 4</p>
+</header>
+
+<div class="container">
+
+<input id="search" placeholder="Search builds..." onkeyup="search()">
+
+<div class="grid">
+
+<div class="card" onclick="openBuild('odm_general')">ODM Build</div>
+<div class="card" onclick="openBuild('odm_ackerman')">Ackerman ODM</div>
+<div class="card" onclick="openBuild('ts_general')">Thunder Spear</div>
+<div class="card" onclick="openBuild('ts_ackerman')">Ackerman TS</div>
+<div class="card" onclick="openBuild('attack_titan')">Attack Titan</div>
+<div class="card" onclick="openBuild('armored_titan')">Armored Titan</div>
+<div class="card" onclick="openBuild('yeager')">Yeager Family</div>
+<div class="card" onclick="openBuild('buffer')">Buffer Build</div>
+
+</div>
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">X</span>
+    <div id="content"></div>
+  </div>
+</div>
+
+<script>
+
+function openBuild(type) {
+let content = "";
+
+/* ODM */
+if(type=="odm_general"){
+content=`
+<h2>ODM Build</h2>
+<p><b>Perks:</b> Perfect Form • Kengo • Immortal • Font of Inspiration</p>
+<p><b>Memories:</b> Gambler • Tactician • Flashstep • Crescendo</p>
+<p><b>Skills:</b> Black Flare • Order Rage • Lethal Tempo</p>
+<p><b>Artifacts:</b> Feathered Bicorn + Crystal Necklace</p>`;
+}
+
+if(type=="odm_ackerman"){
+content=`
+<h2>Ackerman ODM</h2>
+<p><b>Perks:</b> Perfect Form • Kengo • Black Flash</p>
+<p><b>Skills:</b> Rage Mode • Swift Strikes</p>`;
+}
+
+/* TS */
+if(type=="ts_general"){
+content=`
+<h2>Thunder Spear</h2>
+<p><b>Perks:</b> Maximum Firepower • Kengo</p>
+<p><b>Skills:</b> Red Flare • Dual Shot</p>`;
+}
+
+if(type=="ts_ackerman"){
+content=`
+<h2>Ackerman TS</h2>
+<p><b>Skills:</b> Thunder Barrage • Lightning Bolt</p>`;
+}
+
+/* TITANS */
+if(type=="attack_titan"){
+content=`
+<h2>Attack Titan</h2>
+<p><b>Perks:</b> Founder's Blessing • Adaptation</p>
+<p><b>Skills:</b> Shifting • Hardening • Roar</p>`;
+}
+
+if(type=="armored_titan"){
+content=`
+<h2>Armored Titan</h2>
+<p><b>Skills:</b> Earthbreaker • Unstoppable Charge</p>`;
+}
+
+if(type=="yeager"){
+content=`
+<h2>Yeager Family</h2>
+<p><b>Skills:</b> Berserk • Hardening • Roar</p>`;
+}
+
+if(type=="buffer"){
+content=`
+<h2>Buffer</h2>
+<p><b>Skills:</b> Red Flare • Support CD</p>`;
+}
+
+document.getElementById("content").innerHTML = content;
+document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function search(){
+let input=document.getElementById("search").value.toLowerCase();
+let cards=document.getElementsByClassName("card");
+
+for(let c of cards){
+c.style.display=c.innerText.toLowerCase().includes(input)?"":"none";
+}
+}
+
+</script>
+
+</body>
+</html>
