@@ -10,6 +10,24 @@ body {
   font-family: Arial;
   background: radial-gradient(circle at top, #0f172a, #050508);
   color: white;
+  overflow-x: hidden;
+}
+
+/* ANIMATION BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, #00ffcc, #3b82f6, #a855f7, #00ffcc);
+  animation: move 12s linear infinite;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+@keyframes move {
+  0% {transform: translate(0,0);}
+  100% {transform: translate(-50%,-50%);}
 }
 
 /* HEADER */
@@ -50,7 +68,7 @@ header {
   gap: 12px;
 }
 
-/* CARDS */
+/* CARD */
 .card {
   background: #111827;
   padding: 15px;
@@ -62,7 +80,7 @@ header {
 }
 
 .card:hover {
-  transform: scale(1.06);
+  transform: scale(1.07);
   border-color: #00ffcc;
   box-shadow: 0 0 20px rgba(0,255,204,0.25);
 }
@@ -76,12 +94,6 @@ header {
   background: rgba(0,0,0,0.85);
   justify-content: center;
   align-items: center;
-  animation: fade 0.2s ease;
-}
-
-@keyframes fade {
-  from {opacity: 0;}
-  to {opacity: 1;}
 }
 
 .popup-content {
@@ -95,8 +107,8 @@ header {
 }
 
 @keyframes pop {
-  from {transform: scale(0.9);}
-  to {transform: scale(1);}
+  from {transform: scale(0.9); opacity:0;}
+  to {transform: scale(1); opacity:1;}
 }
 
 .close {
@@ -106,17 +118,16 @@ header {
   font-weight: bold;
 }
 
-h2 {
-  color: #00ffcc;
-}
+h2 { color:#00ffcc; }
+p { margin:6px 0; }
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>⚔️ AoTR Wiki</h1>
-  <p>Builds META • Update 4</p>
+<h1>⚔️ AoTR Wiki</h1>
+<p>ULTIMATE BUILDS • META</p>
 </header>
 
 <div class="container">
@@ -137,7 +148,6 @@ h2 {
 </div>
 </div>
 
-<!-- POPUP -->
 <div class="popup" id="popup">
   <div class="popup-content">
     <span class="close" onclick="closePopup()">X</span>
@@ -147,24 +157,26 @@ h2 {
 
 <script>
 
-function openBuild(type) {
-let content = "";
+function openBuild(type){
+let content="";
 
 /* ODM */
 if(type=="odm_general"){
 content=`
-<h2>ODM Build</h2>
+<h2>ODM Build (Général)</h2>
 <p><b>Perks:</b> Perfect Form • Kengo • Immortal • Font of Inspiration</p>
+<p><b>Bonus:</b> Invincible • Peerless Commander</p>
 <p><b>Memories:</b> Gambler • Tactician • Flashstep • Crescendo</p>
-<p><b>Skills:</b> Black Flare • Order Rage • Lethal Tempo</p>
-<p><b>Artifacts:</b> Feathered Bicorn + Crystal Necklace</p>`;
+<p><b>Skills:</b> Black Flare • Order Rage • Lethal Tempo • Red Flare</p>
+<p><b>Artifacts:</b> Feathered Bicorn + Crystal Necklace</p>
+<p><b>Paths:</b> Support CD • ODM Damage • HP</p>`;
 }
 
 if(type=="odm_ackerman"){
 content=`
 <h2>Ackerman ODM</h2>
 <p><b>Perks:</b> Perfect Form • Kengo • Black Flash</p>
-<p><b>Skills:</b> Rage Mode • Swift Strikes</p>`;
+<p><b>Skills:</b> Rage Mode • Swift Strikes • Let It Rip</p>`;
 }
 
 /* TS */
@@ -203,12 +215,12 @@ content=`
 
 if(type=="buffer"){
 content=`
-<h2>Buffer</h2>
+<h2>Buffer Build</h2>
 <p><b>Skills:</b> Red Flare • Support CD</p>`;
 }
 
-document.getElementById("content").innerHTML = content;
-document.getElementById("popup").style.display = "flex";
+document.getElementById("content").innerHTML=content;
+document.getElementById("popup").style.display="flex";
 }
 
 function closePopup(){
@@ -216,11 +228,10 @@ document.getElementById("popup").style.display="none";
 }
 
 function search(){
-let input=document.getElementById("search").value.toLowerCase();
-let cards=document.getElementsByClassName("card");
-
-for(let c of cards){
-c.style.display=c.innerText.toLowerCase().includes(input)?"":"none";
+let i=document.getElementById("search").value.toLowerCase();
+let c=document.getElementsByClassName("card");
+for(let x of c){
+x.style.display=x.innerText.toLowerCase().includes(i)?"":"none";
 }
 }
 
