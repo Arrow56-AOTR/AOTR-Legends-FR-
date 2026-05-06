@@ -13,13 +13,13 @@ body {
   overflow-x: hidden;
 }
 
-/* ANIMATION BACKGROUND */
+/* BACKGROUND ANIMÉ */
 body::before {
   content: "";
   position: fixed;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, #00ffcc, #3b82f6, #a855f7, #00ffcc);
+  background: linear-gradient(45deg,#00ffcc,#3b82f6,#a855f7,#00ffcc);
   animation: move 12s linear infinite;
   opacity: 0.08;
   z-index: -1;
@@ -30,27 +30,18 @@ body::before {
   100% {transform: translate(-50%,-50%);}
 }
 
-/* HEADER */
 header {
   text-align: center;
   padding: 30px;
-  background: linear-gradient(90deg, #00ffcc, #3b82f6, #a855f7);
-  animation: glow 5s infinite linear;
+  background: linear-gradient(90deg,#00ffcc,#3b82f6,#a855f7);
 }
 
-@keyframes glow {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-/* CONTAINER */
 .container {
   max-width: 1100px;
   margin: auto;
   padding: 20px;
 }
 
-/* SEARCH */
 #search {
   width: 100%;
   padding: 14px;
@@ -61,14 +52,12 @@ header {
   color: white;
 }
 
-/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
   gap: 12px;
 }
 
-/* CARD */
 .card {
   background: #111827;
   padding: 15px;
@@ -80,46 +69,36 @@ header {
 }
 
 .card:hover {
-  transform: scale(1.07);
+  transform: scale(1.06);
   border-color: #00ffcc;
-  box-shadow: 0 0 20px rgba(0,255,204,0.25);
 }
 
-/* POPUP */
 .popup {
   display: none;
   position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
+  top:0;left:0;
+  width:100%;height:100%;
   background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
+  justify-content:center;
+  align-items:center;
 }
 
 .popup-content {
-  background: #0f172a;
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 750px;
-  border: 1px solid #00ffcc;
-  animation: pop 0.2s ease;
-}
-
-@keyframes pop {
-  from {transform: scale(0.9); opacity:0;}
-  to {transform: scale(1); opacity:1;}
+  background:#0f172a;
+  padding:20px;
+  border-radius:12px;
+  width:90%;
+  max-width:800px;
+  border:1px solid #00ffcc;
 }
 
 .close {
-  float: right;
-  cursor: pointer;
-  color: red;
-  font-weight: bold;
+  float:right;
+  cursor:pointer;
+  color:red;
 }
-
-h2 { color:#00ffcc; }
-p { margin:6px 0; }
+h2 {color:#00ffcc;}
+p {margin:6px 0;}
 </style>
 </head>
 
@@ -127,99 +106,108 @@ p { margin:6px 0; }
 
 <header>
 <h1>⚔️ AoTR Wiki</h1>
-<p>ULTIMATE BUILDS • META</p>
+<p>FULL BUILDS COMPLETE</p>
 </header>
 
 <div class="container">
 
-<input id="search" placeholder="Search builds..." onkeyup="search()">
+<input id="search" placeholder="Search..." onkeyup="search()">
 
 <div class="grid">
 
-<div class="card" onclick="openBuild('odm_general')">ODM Build</div>
+<div class="card" onclick="openBuild('odm_general')">ODM Général</div>
 <div class="card" onclick="openBuild('odm_ackerman')">Ackerman ODM</div>
-<div class="card" onclick="openBuild('ts_general')">Thunder Spear</div>
+<div class="card" onclick="openBuild('ts_general')">TS Général</div>
 <div class="card" onclick="openBuild('ts_ackerman')">Ackerman TS</div>
 <div class="card" onclick="openBuild('attack_titan')">Attack Titan</div>
 <div class="card" onclick="openBuild('armored_titan')">Armored Titan</div>
 <div class="card" onclick="openBuild('yeager')">Yeager Family</div>
-<div class="card" onclick="openBuild('buffer')">Buffer Build</div>
+<div class="card" onclick="openBuild('buffer')">Buffer</div>
 
 </div>
 </div>
 
 <div class="popup" id="popup">
-  <div class="popup-content">
-    <span class="close" onclick="closePopup()">X</span>
-    <div id="content"></div>
-  </div>
+<div class="popup-content">
+<span class="close" onclick="closePopup()">X</span>
+<div id="content"></div>
+</div>
 </div>
 
 <script>
 
-function openBuild(type){
-let content="";
+function openBuild(t){
 
-/* ODM */
-if(type=="odm_general"){
-content=`
+let c="";
+
+/* ================= ODM ================= */
+if(t=="odm_general"){
+c=`
 <h2>ODM Build (Général)</h2>
 <p><b>Perks:</b> Perfect Form • Kengo • Immortal • Font of Inspiration</p>
 <p><b>Bonus:</b> Invincible • Peerless Commander</p>
 <p><b>Memories:</b> Gambler • Tactician • Flashstep • Crescendo</p>
-<p><b>Skills:</b> Black Flare • Order Rage • Lethal Tempo • Red Flare</p>
+<p><b>Skills:</b> Black Flare • Order Rage • Lethal Tempo • Family Skill</p>
 <p><b>Artifacts:</b> Feathered Bicorn + Crystal Necklace</p>
-<p><b>Paths:</b> Support CD • ODM Damage • HP</p>`;
+<p><b>Paths:</b> Support CD • ODM • HP</p>`;
 }
 
-if(type=="odm_ackerman"){
-content=`
+if(t=="odm_ackerman"){
+c=`
 <h2>Ackerman ODM</h2>
-<p><b>Perks:</b> Perfect Form • Kengo • Black Flash</p>
-<p><b>Skills:</b> Rage Mode • Swift Strikes • Let It Rip</p>`;
+<p><b>Perks:</b> Perfect Form • Kengo • Immortal • Font of Inspiration • Black Flash</p>
+<p><b>Memories:</b> Gambler • Apotheosis • Flashstep • Tactician • Crescendo</p>
+<p><b>Skills:</b> Black Flare • Order Rage • Rage Mode • Swift Strikes • Let It Rip</p>
+<p><b>Artifacts:</b> Feathered Bicorn + Crystal Necklace</p>`;
 }
 
-/* TS */
-if(type=="ts_general"){
-content=`
+/* ================= TS ================= */
+if(t=="ts_general"){
+c=`
 <h2>Thunder Spear</h2>
-<p><b>Perks:</b> Maximum Firepower • Kengo</p>
-<p><b>Skills:</b> Red Flare • Dual Shot</p>`;
+<p><b>Perks:</b> Maximum Firepower • Kengo • Immortal</p>
+<p><b>Memories:</b> Afterimages • Supernova • Tactician • Crescendo</p>
+<p><b>Skills:</b> Black Flare • Red Flare • Dual Shot • Revolving Pierce</p>
+<p><b>Artifacts:</b> Feathered Bicorn + Crystal Necklace</p>`;
 }
 
-if(type=="ts_ackerman"){
-content=`
+if(t=="ts_ackerman"){
+c=`
 <h2>Ackerman TS</h2>
-<p><b>Skills:</b> Thunder Barrage • Lightning Bolt</p>`;
+<p><b>Perks:</b> Maximum Firepower • Kengo • Immortal • Everlasting Flame</p>
+<p><b>Skills:</b> Black Flare • Rage Mode • Lightning Bolt • Thunder Barrage</p>`;
 }
 
-/* TITANS */
-if(type=="attack_titan"){
-content=`
+/* ================= TITANS ================= */
+if(t=="attack_titan"){
+c=`
 <h2>Attack Titan</h2>
-<p><b>Perks:</b> Founder's Blessing • Adaptation</p>
-<p><b>Skills:</b> Shifting • Hardening • Roar</p>`;
+<p><b>Perks:</b> Founder's Blessing • Adaptation • Soulfeed • Art of War</p>
+<p><b>Memories:</b> Apotheosis • Gambler • Quakestrike • Furyforge • Stormcharged</p>
+<p><b>Skills:</b> Shifting • Flashbang • Dual Shot</p>
+<p><b>Titan Skills:</b> Hardening • Stomp • Roar</p>`;
 }
 
-if(type=="armored_titan"){
-content=`
+if(t=="armored_titan"){
+c=`
 <h2>Armored Titan</h2>
-<p><b>Skills:</b> Earthbreaker • Unstoppable Charge</p>`;
+<p><b>Skills:</b> Earthbreaker • Phase Shift • Unstoppable Charge</p>`;
 }
 
-if(type=="yeager"){
-content=`
+if(t=="yeager"){
+c=`
 <h2>Yeager Family</h2>
-<p><b>Skills:</b> Berserk • Hardening • Roar</p>`;
+<p><b>Skills:</b> Berserk • Hardening • Roar • Shifting</p>`;
 }
 
-if(type=="buffer"){
-content=`
+if(t=="buffer"){
+c=`
 <h2>Buffer Build</h2>
-<p><b>Skills:</b> Red Flare • Support CD</p>`;
+<p><b>Perks:</b> Kengo • Immortal • Font of Inspiration</p>
+<p><b>Skills:</b> Red Flare • Support CD • Family Skill</p>`;
 }
 
-document.getElementById("content").innerHTML=content;
+document.getElementById("content").innerHTML=c;
 document.getElementById("popup").style.display="flex";
 }
 
