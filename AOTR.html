@@ -12,27 +12,18 @@ body {
   color: white;
 }
 
-/* HEADER */
 header {
   text-align: center;
   padding: 30px;
   background: linear-gradient(90deg, #00ffcc, #3b82f6, #a855f7);
-  animation: glow 6s linear infinite;
 }
 
-@keyframes glow {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-/* CONTAINER */
 .container {
   max-width: 1100px;
   margin: auto;
   padding: 20px;
 }
 
-/* SEARCH */
 #search {
   width: 100%;
   padding: 14px;
@@ -43,14 +34,12 @@ header {
   color: white;
 }
 
-/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
 }
 
-/* CARD */
 .card {
   background: #111827;
   padding: 15px;
@@ -64,7 +53,6 @@ header {
 .card:hover {
   transform: scale(1.05);
   border-color: #00ffcc;
-  box-shadow: 0 0 15px rgba(0,255,204,0.2);
 }
 
 .card img {
@@ -75,18 +63,11 @@ header {
   margin-bottom: 10px;
 }
 
-.title {
-  font-weight: bold;
-}
-
-/* POPUP */
 .popup {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top:0; left:0;
+  width:100%; height:100%;
   background: rgba(0,0,0,0.85);
   justify-content: center;
   align-items: center;
@@ -99,12 +80,6 @@ header {
   width: 90%;
   max-width: 750px;
   border: 1px solid #00ffcc;
-  animation: pop 0.2s ease;
-}
-
-@keyframes pop {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
 }
 
 .close {
@@ -112,11 +87,9 @@ header {
   cursor: pointer;
   color: red;
   font-weight: bold;
-  font-size: 20px;
 }
 
 h2 { color: #00ffcc; }
-
 </style>
 </head>
 
@@ -124,7 +97,7 @@ h2 { color: #00ffcc; }
 
 <header>
   <h1>⚔️ AoTR WIKI</h1>
-  <p>Builds META • Full Guide</p>
+  <p>Builds complets + META</p>
 </header>
 
 <div class="container">
@@ -135,48 +108,47 @@ h2 { color: #00ffcc; }
 
   <div class="card" onclick="openBuild('odm_general')">
     <img src="images/ODM.jpg">
-    <div class="title">ODM Build</div>
+    <b>ODM Build</b>
   </div>
 
   <div class="card" onclick="openBuild('odm_ackerman')">
     <img src="images/Ackerman.jpg">
-    <div class="title">Ackerman ODM</div>
+    <b>Ackerman ODM</b>
   </div>
 
   <div class="card" onclick="openBuild('ts_general')">
     <img src="images/Ts.jpg">
-    <div class="title">Thunder Spear</div>
+    <b>Thunder Spear</b>
   </div>
 
   <div class="card" onclick="openBuild('ts_ackerman')">
     <img src="images/Ackerman.jpg">
-    <div class="title">Ackerman TS</div>
+    <b>Ackerman TS</b>
   </div>
 
   <div class="card" onclick="openBuild('attack_titan')">
     <img src="images/attack.jpg">
-    <div class="title">Attack Titan</div>
+    <b>Attack Titan</b>
   </div>
 
   <div class="card" onclick="openBuild('armored_titan')">
     <img src="images/Armor.jpg">
-    <div class="title">Armored Titan</div>
+    <b>Armored Titan</b>
   </div>
 
   <div class="card" onclick="openBuild('yeager')">
     <img src="images/Yeager.jpg">
-    <div class="title">Yeager Family</div>
+    <b>Yeager Family</b>
   </div>
 
   <div class="card" onclick="openBuild('buffer')">
     <img src="images/Buff.jpg">
-    <div class="title">Buffer Build</div>
+    <b>Buffer Build</b>
   </div>
 
 </div>
 </div>
 
-<!-- POPUP -->
 <div class="popup" id="popup">
   <div class="popup-content">
     <span class="close" onclick="closePopup()">X</span>
@@ -192,64 +164,88 @@ let content="";
 /* ODM */
 if(type=="odm_general"){
 content=`
-<h2>ODM Build</h2>
+<h2>ODM BUILD</h2>
 <p><b>Perks:</b> Perfect Form • Kengo • Immortal • Font of Inspiration</p>
 <p><b>Memories:</b> Gambler • Tactician • Flashstep • Crescendo</p>
-<p><b>Skills:</b> Black Flare • Order Rage • Lethal Tempo</p>
+<p><b>Skills:</b> Black Flare • Order Rage • Lethal Tempo • Red Flare</p>
+<p><b>Artifacts:</b> Feathered Bicorn • Crystal Necklace</p>
+<p><b>Paths:</b> Support CD • ODM Damage • HP Defense</p>
 `;
 }
 
+/* ACK ODM */
 if(type=="odm_ackerman"){
 content=`
-<h2>Ackerman ODM</h2>
-<p><b>Perks:</b> Perfect Form • Kengo • Black Flash</p>
-<p><b>Skills:</b> Rage Mode • Swift Strikes</p>
+<h2>ACKERMAN ODM</h2>
+<p><b>Perks:</b> Perfect Form • Kengo • Black Flash • Immortal</p>
+<p><b>Memories:</b> Gambler • Apotheosis • Flashstep • Tactician</p>
+<p><b>Skills:</b> Rage Mode • Swift Strikes • Black Flare</p>
+<p><b>Artifacts:</b> Feathered Bicorn • Crystal Necklace</p>
+<p><b>Paths:</b> ODM Damage • CD Reduction</p>
 `;
 }
 
 /* TS */
 if(type=="ts_general"){
 content=`
-<h2>Thunder Spear</h2>
-<p><b>Perks:</b> Maximum Firepower • Kengo</p>
-<p><b>Skills:</b> Red Flare • Dual Shot</p>
+<h2>THUNDER SPEAR</h2>
+<p><b>Perks:</b> Maximum Firepower • Kengo • Immortal</p>
+<p><b>Memories:</b> Afterimages • Supernova • Tactician</p>
+<p><b>Skills:</b> Red Flare • Dual Shot • Revolving Pierce</p>
+<p><b>Artifacts:</b> Feathered Bicorn • Crystal Necklace</p>
+<p><b>Paths:</b> TS Damage • Support CD</p>
 `;
 }
 
+/* ACK TS */
 if(type=="ts_ackerman"){
 content=`
-<h2>Ackerman TS</h2>
-<p><b>Skills:</b> Thunder Barrage • Lightning Bolt</p>
+<h2>ACKERMAN TS</h2>
+<p><b>Perks:</b> Maximum Firepower • Kengo • Everlasting Flame</p>
+<p><b>Skills:</b> Thunder Barrage • Lightning Bolt • Black Flare</p>
+<p><b>Artifacts:</b> Feathered Bicorn • Crystal Necklace</p>
 `;
 }
 
 /* TITANS */
 if(type=="attack_titan"){
 content=`
-<h2>Attack Titan</h2>
-<p><b>Perks:</b> Founder's Blessing • Adaptation</p>
-<p><b>Skills:</b> Shifting • Hardening • Roar</p>
+<h2>ATTACK TITAN</h2>
+<p><b>Perks:</b> Founder's Blessing • Adaptation • Soulfeed • Art of War</p>
+<p><b>Memories:</b> Apotheosis • Gambler • Quakestrike • Furyforge</p>
+<p><b>Skills:</b> Shifting • Flashbang • Dual Shot</p>
+<p><b>Titan Skills:</b> Hardening • Roar • Stomp • Uppercut</p>
+<p><b>Artifacts:</b> Attack Scars • Crystal Necklace</p>
+<p><b>Paths:</b> Offense • Tank</p>
 `;
 }
 
 if(type=="armored_titan"){
 content=`
-<h2>Armored Titan</h2>
-<p><b>Skills:</b> Earthbreaker • Unstoppable Charge</p>
+<h2>ARMORED TITAN</h2>
+<p><b>Perks:</b> Adaptation • Soulfeed • Art of War</p>
+<p><b>Skills:</b> Combustive Counter • Flashbang</p>
+<p><b>Titan Skills:</b> Earthbreaker • Roar • Charge</p>
+<p><b>Artifacts:</b> Armored Scars • Scorched Cloak</p>
 `;
 }
 
 if(type=="yeager"){
 content=`
-<h2>Yeager Family</h2>
-<p><b>Skills:</b> Berserk • Roar • Hardening</p>
+<h2>YEAGER FAMILY</h2>
+<p><b>Perks:</b> Founder's Blessing • Immortal</p>
+<p><b>Skills:</b> Shifting • Berserk • Hardening</p>
+<p><b>Titan Skills:</b> Roar • Stomp • Corkscrew Punch</p>
+<p><b>Artifacts:</b> Attack Scars • Cloak</p>
 `;
 }
 
 if(type=="buffer"){
 content=`
-<h2>Buffer Build</h2>
-<p><b>Skills:</b> Support CD • Red Flare</p>
+<h2>BUFFER BUILD</h2>
+<p><b>Perks:</b> Kengo • Immortal • Peerless Commander</p>
+<p><b>Skills:</b> Red Flare • Support CD</p>
+<p><b>Artifacts:</b> Feathered Bicorn • Crystal Necklace</p>
 `;
 }
 
